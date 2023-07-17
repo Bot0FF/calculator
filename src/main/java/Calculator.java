@@ -22,15 +22,7 @@ public class Calculator {
      * @return возвращает результат вычисления a и b
      */
     public float calculateResult() {
-        Operation operation;
-        float result = 0;
-        try {
-            operation = operationMap.get(action);
-            result = operation.calculate(a, b);
-            if(result == Double.NEGATIVE_INFINITY | result == Double.POSITIVE_INFINITY) throw new ArithmeticException("На ноль делить нельзя");
-        } catch (NullPointerException e) {
-            System.out.println("Введено неверное действие");
-        }
-        return result;
+        Operation operation = operationMap.get(action);
+        return operation.calculate(a, b);
     }
 }

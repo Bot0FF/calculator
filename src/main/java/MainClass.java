@@ -1,5 +1,6 @@
 import java.text.DecimalFormat;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * Калькулятор
@@ -22,11 +23,10 @@ public class MainClass {
             b = sc.nextFloat();
             System.out.println("Введите символ, обозначающий желаемое действие: \n" +
                     "+ : сложить a и b \n- : вычесть из a b \n* : умножить a на b \n/ : делить a на b \n");
-            action = sc.next().charAt(0);
-        } catch (Exception e) {
+            action = sc.next(Pattern.compile("[+\\-*/]")).charAt(0);
+        } catch (NullPointerException e) {
             System.out.println("Введено неверное значение");
         }
-
 
         Calculator calculator = new Calculator(a, b, action);
         System.out.println(new DecimalFormat("#.##").format(calculator.calculateResult()));
